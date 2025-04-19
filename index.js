@@ -1,14 +1,13 @@
 const TronWeb = require("tronweb");
-const axios = require("axios");
 require("dotenv").config();
 
-const PRIVATE_KEYS = [process.env.PRIVATE_KEY_1, process.env.PRIVATE_KEY_2];
-const multisigAddress = process.env.MULTISIG_ADDRESS;
-const THRESHOLD_AMOUNT = 10;
-const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL;
+const privateKey = process.env.PRIVATE_KEY_1;
+const delegatedAddress = process.env.DELEGATED_ADDRESS;
+const thresholdAmount = 10;
 
 const { getNextApiKey } = require("./utils/apiKeyRotator");
 const { getNextReceiverAddress } = require("./utils/receiverRotator");
+const { sendDiscordAlert } = require("./utils/discordAlert");
 
 function getTronWeb(privateKey) {
   const fullHost = "https://api.trongrid.io";
@@ -16,42 +15,28 @@ function getTronWeb(privateKey) {
   return new TronWeb({ fullHost, headers, privateKey });
 }
 
-async function sendDiscordAlert(message) {
-  if (!DISCORD_WEBHOOK_URL) return;
-  try {
-    await axios.post(DISCORD_WEBHOOK_URL, {
-      content: message,
-    });
-  } catch (err) {
-    console.error("❌ Failed to send Discord alert:", err.message);
-  }
-}
-
 async function monitorAndWithdraw() {
   try {
-    const tron = getTronWeb(PRIVATE_KEYS[0]);
-    const balance = await tron.trx.getBalance(multisigAddress);
+    const tron = getTronWeb(privateKey);
+    const balance = await tron.trx.getBalance(delegatedAddress);
     const balanceInTRX = tron.fromSun(balance);
     console.log(`[${new Date().toISOString()}] Balance: ${balanceInTRX} TRX`);
 
-    if (balanceInTRX > THRESHOLD_AMOUNT) {
+    if (balanceInTRX > thresholdAmount) {
       const receiverAddress = getNextReceiverAddress();
       console.log(`Using receiver: ${receiverAddress}`);
       const unsignedTx = await tron.transactionBuilder.sendTrx(
         receiverAddress,
         tron.toSun(balanceInTRX),
-        multisigAddress
+        delegatedAddress
       );
 
-      let signedTx = await tron.trx.sign(unsignedTx, PRIVATE_KEYS[0]);
-      const signerTron2 = getTronWeb(PRIVATE_KEYS[1]);
-      signedTx = await signerTron2.trx.multiSign(signedTx, true);
-
+      const signedTx = await tron.trx.sign(unsignedTx, privateKey);
       const result = await tron.trx.sendRawTransaction(signedTx);
 
       console.log("Withdrawal successful:", result);
       await sendDiscordAlert(
-        `🚨 TRX withdrawal executed!\n🔢 Amount: ${balanceInTRX} TRX\n🔗 TxID: ${result.txid}`
+        `🚨 TRX withdrawal executed!\n🔢 Amount: ${balanceInTRX} TRX\n📤 From: ${delegatedAddress}\n📥 To: ${receiverAddress}\n🔗 TxID: ${result.txid}`
       );
     }
   } catch (error) {
