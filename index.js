@@ -4,11 +4,11 @@ require("dotenv").config();
 
 const PRIVATE_KEYS = [process.env.PRIVATE_KEY_1, process.env.PRIVATE_KEY_2];
 const multisigAddress = process.env.MULTISIG_ADDRESS;
-const receiverAddress = process.env.RECEIVER_ADDRESS;
 const THRESHOLD_AMOUNT = 10;
 const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL;
 
 const { getNextApiKey } = require("./utils/apiKeyRotator");
+const { getNextReceiverAddress } = require("./utils/receiverRotator");
 
 function getTronWeb(privateKey) {
   const fullHost = "https://api.trongrid.io";
@@ -35,7 +35,8 @@ async function monitorAndWithdraw() {
     console.log(`[${new Date().toISOString()}] Balance: ${balanceInTRX} TRX`);
 
     if (balanceInTRX > THRESHOLD_AMOUNT) {
-      console.log("Threshold reached. Creating transaction...");
+      const receiverAddress = getNextReceiverAddress();
+      console.log(`Using receiver: ${receiverAddress}`);
       const unsignedTx = await tron.transactionBuilder.sendTrx(
         receiverAddress,
         tron.toSun(balanceInTRX),
