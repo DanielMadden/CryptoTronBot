@@ -3,11 +3,11 @@ require("dotenv").config();
 
 const privateKey = process.env.PRIVATE_KEY_1;
 const delegatedAddress = process.env.DELEGATED_ADDRESS;
-const thresholdAmount = 10;
+const thresholdAmount = 5;
 
 const { getNextApiKey } = require("./utils/apiKeyRotator");
 const { getNextReceiverAddress } = require("./utils/receiverRotator");
-const { sendDiscordAlert } = require("./utils/discordAlert");
+// const { sendDiscordAlert } = require("./utils/discordAlert");
 
 function getTronWeb(privateKey) {
   const fullHost = "https://api.trongrid.io";
@@ -35,15 +35,15 @@ async function monitorAndWithdraw() {
       const result = await tron.trx.sendRawTransaction(signedTx);
 
       console.log("Withdrawal successful:", result);
-      await sendDiscordAlert(
-        `🚨 TRX withdrawal executed!\n🔢 Amount: ${balanceInTRX} TRX\n📤 From: ${delegatedAddress}\n📥 To: ${receiverAddress}\n🔗 TxID: ${result.txid}`
-      );
+      // await sendDiscordAlert(
+      //   `🚨 TRX withdrawal executed!\n🔢 Amount: ${balanceInTRX} TRX\n📤 From: ${delegatedAddress}\n📥 To: ${receiverAddress}\n🔗 TxID: ${result.txid}`
+      // );
     }
   } catch (error) {
     console.error(`[${new Date().toISOString()}] Error:`, error);
-    await sendDiscordAlert(
-      `❗ Error during TRX monitor:\n\`\`\`${error.message}\`\`\``
-    );
+    // await sendDiscordAlert(
+    //   `❗ Error during TRX monitor:\n\`\`\`${error.message}\`\`\``
+    // );
   }
 }
 

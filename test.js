@@ -28,7 +28,11 @@ function getTronWeb(privateKey) {
       delegatedAddress
     );
 
-    const signedTx = await tron.trx.sign(unsignedTx, privateKey);
+    const signedTx = await tron.trx.sign(
+      unsignedTx,
+      privateKey,
+      delegatedAddress
+    );
     const result = await tron.trx.sendRawTransaction(signedTx);
 
     console.log("✅ Test transaction sent:", result);
