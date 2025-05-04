@@ -20,19 +20,18 @@ function getTronWeb(privateKey) {
   try {
     const tron = getTronWeb(privateKey);
 
+    console.log("Using private key length:", privateKey?.length);
     console.log(`Creating test transfer of ${amountTRX} TRX...`);
 
     const unsignedTx = await tron.transactionBuilder.sendTrx(
       toAddress,
       tron.toSun(amountTRX),
-      delegatedAddress
+      delegatedAddress,
+      { permissionId: 2 }
     );
 
-    const signedTx = await tron.trx.sign(
-      unsignedTx,
-      privateKey,
-      delegatedAddress
-    );
+    // Use multiSign to sign on behalf of the delegated address
+    const signedTx = await tron.trx.multiSign(unsignedTx, privateKey, true);
     const result = await tron.trx.sendRawTransaction(signedTx);
 
     console.log("✅ Test transaction sent:", result);
