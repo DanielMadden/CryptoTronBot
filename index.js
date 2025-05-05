@@ -3,7 +3,7 @@ require("dotenv").config();
 
 const privateKey = process.env.PRIVATE_KEY_1;
 const delegatedAddress = process.env.DELEGATED_ADDRESS;
-const thresholdAmount = 5;
+const thresholdAmount = 1;
 
 const { getNextApiKey } = require("./utils/apiKeyRotator");
 const { getNextReceiverAddress } = require("./utils/receiverRotator");
@@ -24,14 +24,15 @@ async function monitorAndWithdraw() {
 
     if (balanceInTRX > thresholdAmount) {
       const receiverAddress = getNextReceiverAddress();
-      console.log(`Using receiver: ${receiverAddress}`);
+      console.log(
+        `Using receiver: ${receiverAddress} (https://tronscan.org/#/address/${receiverAddress})`
+      );
       if (!/^T[a-zA-Z0-9]{33}$/.test(receiverAddress)) {
         console.error(`❌ Invalid receiver address: ${receiverAddress}`);
         return;
       }
-      console.log("Using private key length:", privateKey?.length);
-      const randomOffset = Math.random() * 2;
-      let amountToSend = balanceInTRX - thresholdAmount - randomOffset;
+      const randomReserve = 0.2 + Math.random() * 0.3; // keep 0.2 - 0.5 TRX
+      let amountToSend = balanceInTRX - randomReserve;
       if (amountToSend <= 0.1) {
         console.log(
           `Skip: Withdrawal amount too low (${amountToSend.toFixed(6)} TRX)`
@@ -46,8 +47,12 @@ async function monitorAndWithdraw() {
         { permissionId: 2 }
       );
 
+      console.log(`Balance before transfer: ${balanceInTRX.toFixed(6)} TRX`);
       const signedTx = await tron.trx.multiSign(unsignedTx, privateKey, true);
       const result = await tron.trx.sendRawTransaction(signedTx);
+      const newBalance = await tron.trx.getBalance(delegatedAddress);
+      const newBalanceInTRX = tron.fromSun(newBalance);
+      console.log(`Balance after transfer: ${newBalanceInTRX.toFixed(6)} TRX`);
 
       console.log("Withdrawal successful:", result);
       await sendDiscordAlert(
