@@ -6,7 +6,7 @@ const RECEIVER_ADDRESSES = [
   process.env.RECEIVER_ADDRESS_3,
 ];
 
-let receiverIndex = 0;
+let receiverIndex = Math.floor(Math.random() * RECEIVER_ADDRESSES.length);
 
 function getNextReceiverAddress() {
   const address = RECEIVER_ADDRESSES[receiverIndex % RECEIVER_ADDRESSES.length];
