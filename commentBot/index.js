@@ -17,12 +17,82 @@ function getRandomTemplate(seed) {
 }
 
 async function getFreshYoutubeLinks() {
-  const query = "usdt transfer site:youtube.com";
+  // Load queries
+  const queries = JSON.parse(fs.readFileSync("queries.json", "utf-8"));
+
+  // Load query history or initialize
+  let queryHistory = {};
+  if (fs.existsSync("queryHistory.json")) {
+    queryHistory = JSON.parse(fs.readFileSync("queryHistory.json", "utf-8"));
+  }
+
+  // Load video links or initialize
+  let videoLinks = {};
+  if (fs.existsSync("videoLinks.json")) {
+    videoLinks = JSON.parse(fs.readFileSync("videoLinks.json", "utf-8"));
+  }
+
+  // Select a random start index for cycling queries
+  let startIndex = Math.floor(Math.random() * queries.length);
+
+  // Time ranges to cycle through for variety
+  const timeRanges = ["qdr:d", "qdr:w", "qdr:m"];
+
+  // Find the next unused query index and corresponding time range
+  let selectedIndex = -1;
+  let selectedRange = null;
+  for (let i = 0; i < queries.length; i++) {
+    const idx = (startIndex + i) % queries.length;
+    const query = queries[idx];
+    if (!queryHistory[query]) {
+      selectedIndex = idx;
+      selectedRange = timeRanges[i % timeRanges.length];
+      break;
+    }
+  }
+
+  if (selectedIndex === -1) {
+    // All queries used, reset history and pick first query/time range
+    queryHistory = {};
+    selectedIndex = 0;
+    selectedRange = timeRanges[0];
+  }
+
+  const query = queries[selectedIndex];
+  const timeRange = selectedRange;
+
   const url = `https://serpapi.com/search.json?q=${encodeURIComponent(
     query
-  )}&tbm=vid&num=10&tbs=qdr:d&api_key=${SERP_API_KEY}`;
+  )}&tbm=vid&num=10&tbs=${timeRange}&api_key=${SERP_API_KEY}`;
+
   const response = await axios.get(url);
-  return response.data.video_results.map((video) => video.link);
+  const videos = response.data.video_results || [];
+
+  // Record query usage
+  queryHistory[query] = {
+    usedAt: new Date().toISOString(),
+    range: timeRange,
+  };
+
+  // Add new video links to videoLinks.json with metadata
+  for (const video of videos) {
+    if (!videoLinks[video.link]) {
+      videoLinks[video.link] = {
+        url: video.link,
+        query: query,
+        range: timeRange,
+        foundAt: new Date().toISOString(),
+        visited: false,
+        commentedAt: null,
+      };
+    }
+  }
+
+  // Save updated files
+  fs.writeFileSync("queryHistory.json", JSON.stringify(queryHistory, null, 2));
+  fs.writeFileSync("videoLinks.json", JSON.stringify(videoLinks, null, 2));
+
+  return videos.map((v) => v.link);
 }
 
 async function postCommentOnYouTube(browser, videoUrl, comment) {
@@ -71,54 +141,67 @@ async function postCommentOnYouTube(browser, videoUrl, comment) {
     await page.click(submitButtonSelector);
 
     console.log("✅ Posted comment:", comment);
+    await page.close();
+    return true;
   } catch (err) {
     console.log("⚠️ Could not post on:", videoUrl);
+    await page.close();
+    return false;
   }
-
-  await page.close();
 }
 
 async function postCommentsOnFreshVideos() {
-  const postedHistory = new Set(
-    fs.existsSync("posted.json")
-      ? JSON.parse(fs.readFileSync("posted.json"))
-      : []
-  );
+  // Load posted history or initialize
+  let postedHistory = new Set();
+  if (fs.existsSync("posted.json")) {
+    postedHistory = new Set(JSON.parse(fs.readFileSync("posted.json")));
+  }
 
-  // const videoLinks = await getFreshYoutubeLinks();
-  // console.log(videoLinks);
-  // TEMPORARY TEST DATA SO I DONT USE THE API OVER AND OVER AGAIN
-  const videoLinks = [
-    "https://www.youtube.com/watch?v=ReoZkmP_zZ0",
-    "https://www.youtube.com/watch?v=lNh0fPIbU1A",
-    "https://www.youtube.com/watch?v=mBVpcD6-VIc",
-    "https://www.youtube.com/watch?v=bWEwoc4EKdA",
-    "https://www.youtube.com/watch?v=Tmn55EZAojI",
-    "https://www.youtube.com/watch?v=vEmMMf_UJeQ",
-    "https://www.youtube.com/watch?v=U6TxP1ng8X4",
-    "https://www.youtube.com/watch?v=TvcKpWvTZT8",
-    "https://www.youtube.com/watch?v=5ao6REprKfo",
-    "https://www.youtube.com/watch?v=Ws5DcFG_lmo",
-  ];
+  // Load video links with metadata
+  let videoLinks = {};
+  if (fs.existsSync("videoLinks.json")) {
+    videoLinks = JSON.parse(fs.readFileSync("videoLinks.json"));
+  } else {
+    videoLinks = {};
+  }
+
+  // Filter for unvisited links
+  const unvisitedLinks = Object.values(videoLinks).filter((v) => !v.visited);
+
+  // If no unvisited links, fetch fresh links
+  if (unvisitedLinks.length === 0) {
+    await getFreshYoutubeLinks();
+    videoLinks = JSON.parse(fs.readFileSync("videoLinks.json"));
+  }
 
   const browser = await puppeteer.launch({
     headless: false,
     userDataDir: "./youtube-session",
   });
 
-  for (const link of videoLinks) {
+  for (const videoData of Object.values(videoLinks)) {
+    if (videoData.visited) continue;
+
+    const link = videoData.url;
     if (postedHistory.has(link)) continue;
 
     const seed = getRandomSeed();
     const comment = getRandomTemplate(seed);
 
-    await postCommentOnYouTube(browser, link, comment);
+    const success = await postCommentOnYouTube(browser, link, comment);
 
-    postedHistory.add(link);
-    fs.writeFileSync(
-      "posted.json",
-      JSON.stringify([...postedHistory], null, 2)
-    );
+    if (success) {
+      videoData.visited = true;
+      videoData.commentedAt = new Date().toISOString();
+      postedHistory.add(link);
+
+      // Save updates after each comment
+      fs.writeFileSync("videoLinks.json", JSON.stringify(videoLinks, null, 2));
+      fs.writeFileSync(
+        "posted.json",
+        JSON.stringify([...postedHistory], null, 2)
+      );
+    }
   }
 
   await browser.close();
