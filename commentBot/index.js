@@ -17,7 +17,7 @@ function getRandomTemplate(seed) {
 }
 
 async function getFreshYoutubeLinks() {
-  // Load queries
+  // Load queries from queries.json
   const queries = JSON.parse(fs.readFileSync("queries.json", "utf-8"));
 
   // Load query history or initialize
@@ -26,40 +26,37 @@ async function getFreshYoutubeLinks() {
     queryHistory = JSON.parse(fs.readFileSync("queryHistory.json", "utf-8"));
   }
 
-  // Load video links or initialize
-  let videoLinks = {};
-  if (fs.existsSync("videoLinks.json")) {
-    videoLinks = JSON.parse(fs.readFileSync("videoLinks.json", "utf-8"));
-  }
+  // Use only 'qdr:d' time range for freshness
+  const timeRange = "qdr:d";
 
-  // Select a random start index for cycling queries
-  let startIndex = Math.floor(Math.random() * queries.length);
+  // Get today's date string in YYYY-MM-DD
+  const today = new Date().toISOString().slice(0, 10);
 
-  // Time ranges to cycle through for variety
-  const timeRanges = ["qdr:d", "qdr:w", "qdr:m"];
-
-  // Find the next unused query index and corresponding time range
-  let selectedIndex = -1;
-  let selectedRange = null;
-  for (let i = 0; i < queries.length; i++) {
-    const idx = (startIndex + i) % queries.length;
-    const query = queries[idx];
-    if (!queryHistory[query]) {
-      selectedIndex = idx;
-      selectedRange = timeRanges[i % timeRanges.length];
+  // Find a query that has not been queried today
+  let selectedQuery = null;
+  for (const query of queries) {
+    const historyEntries = queryHistory[query] || [];
+    const hasTodayEntry = historyEntries.some(
+      (entry) => entry.fetchedAt.slice(0, 10) === today
+    );
+    if (!hasTodayEntry) {
+      selectedQuery = query;
       break;
     }
   }
 
-  if (selectedIndex === -1) {
-    // All queries used, reset history and pick first query/time range
-    queryHistory = {};
-    selectedIndex = 0;
-    selectedRange = timeRanges[0];
+  if (!selectedQuery) {
+    // All queries used today, reset history for today by clearing all entries older than today
+    for (const query of Object.keys(queryHistory)) {
+      queryHistory[query] = queryHistory[query].filter(
+        (entry) => entry.fetchedAt.slice(0, 10) === today
+      );
+    }
+    // Pick first query after reset
+    selectedQuery = queries[0];
   }
 
-  const query = queries[selectedIndex];
-  const timeRange = selectedRange;
+  const query = selectedQuery;
 
   const url = `https://serpapi.com/search.json?q=${encodeURIComponent(
     query
@@ -68,15 +65,32 @@ async function getFreshYoutubeLinks() {
   const response = await axios.get(url);
   const videos = response.data.video_results || [];
 
-  // Record query usage
-  queryHistory[query] = {
-    usedAt: new Date().toISOString(),
-    range: timeRange,
-  };
+  // Record query usage by adding a new fetchedAt entry
+  if (!queryHistory[query]) {
+    queryHistory[query] = [];
+  }
+  queryHistory[query].push({ fetchedAt: new Date().toISOString() });
+
+  // Load video links or initialize
+  let videoLinks = {};
+  if (fs.existsSync("videoLinks.json")) {
+    videoLinks = JSON.parse(fs.readFileSync("videoLinks.json", "utf-8"));
+  }
 
   // Add new video links to videoLinks.json with metadata
   for (const video of videos) {
-    if (!videoLinks[video.link]) {
+    if (videoLinks[video.link]) {
+      // Retain visited and commentedAt values if exist
+      const existing = videoLinks[video.link];
+      videoLinks[video.link] = {
+        url: video.link,
+        query: query,
+        range: timeRange,
+        foundAt: existing.foundAt || new Date().toISOString(),
+        visited: existing.visited || false,
+        commentedAt: existing.commentedAt || null,
+      };
+    } else {
       videoLinks[video.link] = {
         url: video.link,
         query: query,
@@ -189,6 +203,27 @@ async function postCommentsOnFreshVideos() {
     const comment = getRandomTemplate(seed);
 
     const success = await postCommentOnYouTube(browser, link, comment);
+
+    // Append to activityLog.json
+    const logEntry = {
+      timestamp: new Date().toISOString(),
+      video: link,
+      query: videoData.query,
+      action: "comment",
+      success: success,
+      message: success ? "✅ Posted comment" : "⚠️ Could not post on...",
+    };
+    const logFile = "activityLog.json";
+    let activityLog = [];
+    if (fs.existsSync(logFile)) {
+      try {
+        activityLog = JSON.parse(fs.readFileSync(logFile));
+      } catch {
+        activityLog = [];
+      }
+    }
+    activityLog.push(logEntry);
+    fs.writeFileSync(logFile, JSON.stringify(activityLog, null, 2));
 
     if (success) {
       videoData.visited = true;
