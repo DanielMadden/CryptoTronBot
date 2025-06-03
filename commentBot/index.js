@@ -1,3 +1,16 @@
+function loadJSON(path, fallback = {}) {
+  try {
+    return fs.existsSync(path)
+      ? JSON.parse(fs.readFileSync(path, "utf-8"))
+      : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function saveJSON(path, data) {
+  fs.writeFileSync(path, JSON.stringify(data, null, 2));
+}
 const axios = require("axios");
 const fs = require("fs");
 const puppeteer = require("puppeteer");
@@ -19,10 +32,7 @@ function getRandomTemplate(seed) {
 async function getFreshYoutubeLinks() {
   console.log("🔍 Checking for fresh YouTube links...");
 
-  let queries = {};
-  if (fs.existsSync("queries.json")) {
-    queries = JSON.parse(fs.readFileSync("queries.json", "utf-8"));
-  }
+  let queries = loadJSON("queries.json", {});
 
   const timeRange = "qdr:d";
   const today = new Date().toISOString().slice(0, 10);
@@ -65,10 +75,7 @@ async function getFreshYoutubeLinks() {
   }
   queries[query].push({ fetchedAt: new Date().toISOString() });
 
-  let videoLinks = {};
-  if (fs.existsSync("videoLinks.json")) {
-    videoLinks = JSON.parse(fs.readFileSync("videoLinks.json", "utf-8"));
-  }
+  let videoLinks = loadJSON("videoLinks.json", {});
 
   for (const video of videos) {
     if (videoLinks[video.link]) {
@@ -93,8 +100,8 @@ async function getFreshYoutubeLinks() {
     }
   }
 
-  fs.writeFileSync("queries.json", JSON.stringify(queries, null, 2));
-  fs.writeFileSync("videoLinks.json", JSON.stringify(videoLinks, null, 2));
+  saveJSON("queries.json", queries);
+  saveJSON("videoLinks.json", videoLinks);
 
   return videos.map((v) => v.link);
 }
@@ -156,24 +163,16 @@ async function postCommentOnYouTube(browser, videoUrl, comment) {
 }
 
 async function postCommentsOnFreshVideos() {
-  let postedHistory = new Set();
-  if (fs.existsSync("posted.json")) {
-    postedHistory = new Set(JSON.parse(fs.readFileSync("posted.json")));
-  }
+  let postedHistory = new Set(loadJSON("posted.json", []));
+  let videoLinks = loadJSON("videoLinks.json", {});
 
-  let videoLinks = {};
-  if (fs.existsSync("videoLinks.json")) {
-    videoLinks = JSON.parse(fs.readFileSync("videoLinks.json"));
-  } else {
-    videoLinks = {};
-  }
-
-  const unvisitedLinks = Object.values(videoLinks).filter((v) => !v.visited);
-
+  const unvisitedLinks = Object.values(videoLinks).filter(
+    (v) => !v.visited && !v.skipped
+  );
   if (unvisitedLinks.length === 0) {
     console.log("🔁 No unvisited links left. Fetching more...");
     await getFreshYoutubeLinks();
-    videoLinks = JSON.parse(fs.readFileSync("videoLinks.json"));
+    videoLinks = loadJSON("videoLinks.json", {});
   }
 
   const browser = await puppeteer.launch({
@@ -184,6 +183,14 @@ async function postCommentsOnFreshVideos() {
   let processed = 0;
   for (const videoData of Object.values(videoLinks)) {
     if (videoData.visited || postedHistory.has(videoData.url)) continue;
+
+    // Skip Shorts videos
+    if (videoData.url.includes("/shorts/")) {
+      console.log("🚫 Skipping Shorts video:", videoData.url);
+      videoData.skipped = true;
+      saveJSON("videoLinks.json", videoLinks);
+      continue;
+    }
 
     const seed = getRandomSeed();
     const comment = getRandomTemplate(seed);
@@ -207,18 +214,15 @@ async function postCommentsOnFreshVideos() {
       }
     }
     activityLog.push(logEntry);
-    fs.writeFileSync(logFile, JSON.stringify(activityLog, null, 2));
+    saveJSON(logFile, activityLog);
 
+    videoData.visited = true;
     if (success) {
-      videoData.visited = true;
       videoData.commentedAt = new Date().toISOString();
       postedHistory.add(videoData.url);
-      fs.writeFileSync("videoLinks.json", JSON.stringify(videoLinks, null, 2));
-      fs.writeFileSync(
-        "posted.json",
-        JSON.stringify([...postedHistory], null, 2)
-      );
     }
+    saveJSON("videoLinks.json", videoLinks);
+    saveJSON("posted.json", [...postedHistory]);
 
     processed++;
   }

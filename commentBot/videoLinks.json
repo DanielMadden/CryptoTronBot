@@ -113,7 +113,7 @@
   },
   "https://www.youtube.com/watch?v=m-T4PlsyxBY": {
     "url": "https://www.youtube.com/watch?v=m-T4PlsyxBY",
-    "query": "site:youtube.com ethereum news update",
+    "query": "site:youtube.com crypto trading bots 2025",
     "range": "qdr:d",
     "foundAt": "2025-06-03T00:49:49.920Z",
     "visited": true,
@@ -213,7 +213,8 @@
     "range": "qdr:d",
     "foundAt": "2025-06-03T01:07:50.636Z",
     "visited": false,
-    "commentedAt": null
+    "commentedAt": null,
+    "skipped": true
   },
   "https://www.youtube.com/watch?v=EgxFa-8E9iU": {
     "url": "https://www.youtube.com/watch?v=EgxFa-8E9iU",
@@ -233,10 +234,314 @@
   },
   "https://www.youtube.com/watch?v=53dpqdVoHbM": {
     "url": "https://www.youtube.com/watch?v=53dpqdVoHbM",
-    "query": "site:youtube.com altcoin season predictions",
+    "query": "site:youtube.com solana nft drops",
     "range": "qdr:d",
     "foundAt": "2025-06-03T01:07:50.636Z",
     "visited": true,
     "commentedAt": "2025-06-03T01:12:54.581Z"
+  },
+  "https://www.youtube.com/watch?v=WBlPT3iUkko": {
+    "url": "https://www.youtube.com/watch?v=WBlPT3iUkko",
+    "query": "site:youtube.com defi staking tutorial",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:34:17.968Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:34:40.958Z"
+  },
+  "https://www.youtube.com/watch?v=F-443h2ZT90": {
+    "url": "https://www.youtube.com/watch?v=F-443h2ZT90",
+    "query": "site:youtube.com defi staking tutorial",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:34:17.968Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:35:18.353Z"
+  },
+  "https://www.youtube.com/watch?v=p4Jtg6BK5Yo": {
+    "url": "https://www.youtube.com/watch?v=p4Jtg6BK5Yo",
+    "query": "site:youtube.com defi staking tutorial",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:34:17.968Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:35:49.245Z"
+  },
+  "https://www.youtube.com/watch?v=VNQ1vANrEIs": {
+    "url": "https://www.youtube.com/watch?v=VNQ1vANrEIs",
+    "query": "site:youtube.com defi staking tutorial",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:34:17.968Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:36:19.317Z"
+  },
+  "https://www.youtube.com/watch?v=5sQ-KcjQ40w": {
+    "url": "https://www.youtube.com/watch?v=5sQ-KcjQ40w",
+    "query": "site:youtube.com defi staking tutorial",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:34:17.968Z",
+    "visited": true,
+    "commentedAt": null
+  },
+  "https://www.youtube.com/watch?v=3TagDB_vhjg": {
+    "url": "https://www.youtube.com/watch?v=3TagDB_vhjg",
+    "query": "site:youtube.com defi staking tutorial",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:34:17.968Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:37:24.808Z"
+  },
+  "https://www.youtube.com/watch?v=E9NlGk7jfbY": {
+    "url": "https://www.youtube.com/watch?v=E9NlGk7jfbY",
+    "query": "site:youtube.com defi staking tutorial",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:34:17.968Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:37:55.703Z"
+  },
+  "https://www.youtube.com/watch?v=NPCe9_wPv4E": {
+    "url": "https://www.youtube.com/watch?v=NPCe9_wPv4E",
+    "query": "site:youtube.com defi staking tutorial",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:34:17.968Z",
+    "visited": true,
+    "commentedAt": null
+  },
+  "https://www.youtube.com/watch?v=qmy5R9I95Ho": {
+    "url": "https://www.youtube.com/watch?v=qmy5R9I95Ho",
+    "query": "site:youtube.com defi staking tutorial",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:34:17.968Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:38:52.748Z"
+  },
+  "https://www.youtube.com/watch?v=xZuR01YtHIU": {
+    "url": "https://www.youtube.com/watch?v=xZuR01YtHIU",
+    "query": "site:youtube.com defi staking tutorial",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:34:17.968Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:39:21.238Z"
+  },
+  "https://www.youtube.com/watch?v=UyopUvu4m08": {
+    "url": "https://www.youtube.com/watch?v=UyopUvu4m08",
+    "query": "site:youtube.com crypto trading bots 2025",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:39:22.806Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:39:53.335Z"
+  },
+  "https://www.youtube.com/watch?v=ZMADYHIRPgk": {
+    "url": "https://www.youtube.com/watch?v=ZMADYHIRPgk",
+    "query": "site:youtube.com crypto trading bots 2025",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:39:22.807Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:40:26.500Z"
+  },
+  "https://www.youtube.com/watch?v=DbJJkgKP1PI": {
+    "url": "https://www.youtube.com/watch?v=DbJJkgKP1PI",
+    "query": "site:youtube.com crypto trading bots 2025",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:39:22.807Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:40:56.481Z"
+  },
+  "https://www.youtube.com/watch?v=7PsA6GCwatI": {
+    "url": "https://www.youtube.com/watch?v=7PsA6GCwatI",
+    "query": "site:youtube.com crypto trading bots 2025",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:39:22.807Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:41:25.348Z"
+  },
+  "https://www.youtube.com/watch?v=jkK8JBwx3CY": {
+    "url": "https://www.youtube.com/watch?v=jkK8JBwx3CY",
+    "query": "site:youtube.com crypto trading bots 2025",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:39:22.807Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:41:54.586Z"
+  },
+  "https://www.youtube.com/watch?v=GgtApwML7F8": {
+    "url": "https://www.youtube.com/watch?v=GgtApwML7F8",
+    "query": "site:youtube.com crypto trading bots 2025",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:39:22.807Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:42:22.888Z"
+  },
+  "https://www.youtube.com/watch?v=kvLs5hURj0Y": {
+    "url": "https://www.youtube.com/watch?v=kvLs5hURj0Y",
+    "query": "site:youtube.com crypto trading bots 2025",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:39:22.807Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:42:49.927Z"
+  },
+  "https://www.youtube.com/watch?v=hKmM6CdfpuE": {
+    "url": "https://www.youtube.com/watch?v=hKmM6CdfpuE",
+    "query": "site:youtube.com crypto trading bots 2025",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:39:22.807Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:43:18.656Z"
+  },
+  "https://www.youtube.com/watch?v=gFDlAmEYJMM": {
+    "url": "https://www.youtube.com/watch?v=gFDlAmEYJMM",
+    "query": "site:youtube.com crypto trading bots 2025",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:39:22.807Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:43:47.925Z"
+  },
+  "https://www.youtube.com/watch?v=pMtal-aBCAA": {
+    "url": "https://www.youtube.com/watch?v=pMtal-aBCAA",
+    "query": "site:youtube.com how to use metamask",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:43:51.496Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:44:21.080Z"
+  },
+  "https://www.youtube.com/watch?v=IcM-SqglABg": {
+    "url": "https://www.youtube.com/watch?v=IcM-SqglABg",
+    "query": "site:youtube.com how to use metamask",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:43:51.496Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:44:52.454Z"
+  },
+  "https://www.youtube.com/watch?v=VJhJGPa1qR8&vl=en": {
+    "url": "https://www.youtube.com/watch?v=VJhJGPa1qR8&vl=en",
+    "query": "site:youtube.com how to use metamask",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:43:51.496Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:45:23.434Z"
+  },
+  "https://www.youtube.com/watch?v=x4fsv908V4A": {
+    "url": "https://www.youtube.com/watch?v=x4fsv908V4A",
+    "query": "site:youtube.com how to use metamask",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:43:51.496Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:45:54.959Z"
+  },
+  "https://www.youtube.com/watch?v=xF6r4jWcbYk": {
+    "url": "https://www.youtube.com/watch?v=xF6r4jWcbYk",
+    "query": "site:youtube.com how to use metamask",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:43:51.496Z",
+    "visited": true,
+    "commentedAt": null
+  },
+  "https://www.youtube.com/watch?v=kvz8xJIB4v4": {
+    "url": "https://www.youtube.com/watch?v=kvz8xJIB4v4",
+    "query": "site:youtube.com how to use metamask",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:43:51.496Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:46:57.272Z"
+  },
+  "https://www.youtube.com/watch?v=Hn0V2_F_EVg": {
+    "url": "https://www.youtube.com/watch?v=Hn0V2_F_EVg",
+    "query": "site:youtube.com how to use metamask",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:43:51.496Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:47:27.094Z"
+  },
+  "https://www.youtube.com/watch?v=Y_CrsaVqoGo": {
+    "url": "https://www.youtube.com/watch?v=Y_CrsaVqoGo",
+    "query": "site:youtube.com how to use metamask",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:43:51.496Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:47:58.091Z"
+  },
+  "https://www.youtube.com/watch?v=OvMpoqwF-uM": {
+    "url": "https://www.youtube.com/watch?v=OvMpoqwF-uM",
+    "query": "site:youtube.com how to use metamask",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:43:51.496Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:48:28.450Z"
+  },
+  "https://www.youtube.com/watch?v=bw9mZWTi_bk": {
+    "url": "https://www.youtube.com/watch?v=bw9mZWTi_bk",
+    "query": "site:youtube.com how to use metamask",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:43:51.496Z",
+    "visited": true,
+    "commentedAt": null
+  },
+  "https://www.youtube.com/watch?v=iPgXQJKCTgM": {
+    "url": "https://www.youtube.com/watch?v=iPgXQJKCTgM",
+    "query": "site:youtube.com solana nft drops",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:48:54.116Z",
+    "visited": false,
+    "commentedAt": null
+  },
+  "https://www.youtube.com/watch?v=Vpx3MuRpV_g": {
+    "url": "https://www.youtube.com/watch?v=Vpx3MuRpV_g",
+    "query": "site:youtube.com solana nft drops",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:48:54.117Z",
+    "visited": false,
+    "commentedAt": null
+  },
+  "https://www.youtube.com/watch?v=8FlhExnWi9U": {
+    "url": "https://www.youtube.com/watch?v=8FlhExnWi9U",
+    "query": "site:youtube.com solana nft drops",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:48:54.117Z",
+    "visited": false,
+    "commentedAt": null
+  },
+  "https://www.youtube.com/watch?v=w6e_HHPdEko": {
+    "url": "https://www.youtube.com/watch?v=w6e_HHPdEko",
+    "query": "site:youtube.com solana nft drops",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:48:54.117Z",
+    "visited": false,
+    "commentedAt": null
+  },
+  "https://www.youtube.com/watch?v=U4E3_OdbckA": {
+    "url": "https://www.youtube.com/watch?v=U4E3_OdbckA",
+    "query": "site:youtube.com solana nft drops",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:48:54.117Z",
+    "visited": false,
+    "commentedAt": null
+  },
+  "https://www.youtube.com/watch?v=oZz29HsZMy0": {
+    "url": "https://www.youtube.com/watch?v=oZz29HsZMy0",
+    "query": "site:youtube.com solana nft drops",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:48:54.117Z",
+    "visited": false,
+    "commentedAt": null
+  },
+  "https://www.youtube.com/watch?v=CfgnTaPG7iA": {
+    "url": "https://www.youtube.com/watch?v=CfgnTaPG7iA",
+    "query": "site:youtube.com solana nft drops",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:48:54.117Z",
+    "visited": false,
+    "commentedAt": null
+  },
+  "https://www.youtube.com/watch?v=z0SqyuHPf5Y": {
+    "url": "https://www.youtube.com/watch?v=z0SqyuHPf5Y",
+    "query": "site:youtube.com solana nft drops",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:48:54.117Z",
+    "visited": false,
+    "commentedAt": null
+  },
+  "https://www.youtube.com/watch?v=TAKFPPR93Yg": {
+    "url": "https://www.youtube.com/watch?v=TAKFPPR93Yg",
+    "query": "site:youtube.com solana nft drops",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:48:54.117Z",
+    "visited": false,
+    "commentedAt": null
   }
 }
