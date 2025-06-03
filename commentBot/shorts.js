@@ -36,8 +36,7 @@ function getRandomTemplate(seed) {
       // Watch for a random time
       const watchTime = Math.floor(Math.random() * 8000) + 1000;
       console.log(`⏱️ Watching for ${watchTime}ms`);
-      await page.waitForTimeout(watchTime);
-
+      await new Promise((resolve) => setTimeout(resolve, watchTime));
       // Wait for the comment box and focus
       await page.waitForSelector("ytd-comment-simplebox-renderer", {
         timeout: 5000,
@@ -65,6 +64,5 @@ function getRandomTemplate(seed) {
 
     // Move to next Short
     await page.keyboard.press("ArrowDown");
-    await page.waitForTimeout(2000);
   }
 })();
