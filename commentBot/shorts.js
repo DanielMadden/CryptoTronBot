@@ -1,6 +1,6 @@
 const puppeteer = require("puppeteer");
-const seeds = require("../seedPhrases.json");
-const templates = require("../templates");
+const seeds = require("./seedPhrases.json");
+const templates = require("./templates");
 
 function getRandomSeed() {
   return seeds[Math.floor(Math.random() * seeds.length)];
@@ -15,7 +15,7 @@ function getRandomTemplate(seed) {
   const browser = await puppeteer.launch({
     headless: false,
     defaultViewport: null,
-    userDataDir: "../youtube-session",
+    userDataDir: "./youtube-session",
   });
 
   const page = await browser.newPage();
