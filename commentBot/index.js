@@ -17,13 +17,10 @@ function getRandomTemplate(seed) {
 }
 
 async function getFreshYoutubeLinks() {
-  // Load queries from queries.json
-  const queries = JSON.parse(fs.readFileSync("queries.json", "utf-8"));
-
-  // Load query history or initialize
-  let queryHistory = {};
-  if (fs.existsSync("queryHistory.json")) {
-    queryHistory = JSON.parse(fs.readFileSync("queryHistory.json", "utf-8"));
+  // Load queries from queries.json as an object
+  let queries = {};
+  if (fs.existsSync("queries.json")) {
+    queries = JSON.parse(fs.readFileSync("queries.json", "utf-8"));
   }
 
   // Use only 'qdr:d' time range for freshness
@@ -34,8 +31,8 @@ async function getFreshYoutubeLinks() {
 
   // Find a query that has not been queried today
   let selectedQuery = null;
-  for (const query of queries) {
-    const historyEntries = queryHistory[query] || [];
+  for (const query of Object.keys(queries)) {
+    const historyEntries = queries[query] || [];
     const hasTodayEntry = historyEntries.some(
       (entry) => entry.fetchedAt.slice(0, 10) === today
     );
@@ -47,13 +44,13 @@ async function getFreshYoutubeLinks() {
 
   if (!selectedQuery) {
     // All queries used today, reset history for today by clearing all entries older than today
-    for (const query of Object.keys(queryHistory)) {
-      queryHistory[query] = queryHistory[query].filter(
+    for (const query of Object.keys(queries)) {
+      queries[query] = queries[query].filter(
         (entry) => entry.fetchedAt.slice(0, 10) === today
       );
     }
     // Pick first query after reset
-    selectedQuery = queries[0];
+    selectedQuery = Object.keys(queries)[0];
   }
 
   const query = selectedQuery;
@@ -65,11 +62,11 @@ async function getFreshYoutubeLinks() {
   const response = await axios.get(url);
   const videos = response.data.video_results || [];
 
-  // Record query usage by adding a new fetchedAt entry
-  if (!queryHistory[query]) {
-    queryHistory[query] = [];
+  // Record query usage by adding a new fetchedAt entry to the selected query's array
+  if (!queries[query]) {
+    queries[query] = [];
   }
-  queryHistory[query].push({ fetchedAt: new Date().toISOString() });
+  queries[query].push({ fetchedAt: new Date().toISOString() });
 
   // Load video links or initialize
   let videoLinks = {};
@@ -102,8 +99,8 @@ async function getFreshYoutubeLinks() {
     }
   }
 
-  // Save updated files
-  fs.writeFileSync("queryHistory.json", JSON.stringify(queryHistory, null, 2));
+  // Save updated queries.json and videoLinks.json
+  fs.writeFileSync("queries.json", JSON.stringify(queries, null, 2));
   fs.writeFileSync("videoLinks.json", JSON.stringify(videoLinks, null, 2));
 
   return videos.map((v) => v.link);
@@ -135,11 +132,13 @@ async function postCommentOnYouTube(browser, videoUrl, comment) {
   // Wait a bit to simulate human watch time
   await new Promise((resolve) => setTimeout(resolve, 5000));
 
-  // Scroll slowly to bottom to ensure comments load
-  for (let i = 0; i < 10; i++) {
-    await page.evaluate(() => window.scrollBy(0, window.innerHeight / 2));
+  // Scroll smoothly and randomly to mimic human behavior and ensure comments load
+  const scrollSteps = Math.floor(Math.random() * 5) + 3; // 3–7 scrolls
+  for (let i = 0; i < scrollSteps; i++) {
+    const scrollAmount = Math.floor(Math.random() * 200) + 100; // scroll by 100–300px
+    await page.evaluate((y) => window.scrollBy(0, y), scrollAmount);
     await new Promise((resolve) =>
-      setTimeout(resolve, 500 + Math.random() * 1000)
+      setTimeout(resolve, Math.floor(Math.random() * 500) + 300)
     );
   }
 
