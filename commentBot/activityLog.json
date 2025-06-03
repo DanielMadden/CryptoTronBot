@@ -758,5 +758,165 @@
     "action": "comment",
     "success": true,
     "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T02:16:21.724Z",
+    "video": "https://www.youtube.com/watch?v=mtbUdV8l6yM",
+    "query": "site:youtube.com layer 2 scaling explained",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T02:16:54.125Z",
+    "video": "https://www.youtube.com/watch?v=AlWPXeDm5j0",
+    "query": "site:youtube.com layer 2 scaling explained",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T02:17:21.770Z",
+    "video": "https://www.youtube.com/watch?v=xXFzbTNNHew",
+    "query": "site:youtube.com layer 2 scaling explained",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T02:17:52.796Z",
+    "video": "https://www.youtube.com/watch?v=tORh80fIs0E",
+    "query": "site:youtube.com layer 2 scaling explained",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T02:18:32.814Z",
+    "video": "https://www.youtube.com/watch?v=zBK7j-0wFU4",
+    "query": "site:youtube.com layer 2 scaling explained",
+    "action": "comment",
+    "success": false,
+    "message": "⚠️ Could not post on..."
+  },
+  {
+    "timestamp": "2025-06-03T02:18:54.667Z",
+    "video": "https://www.youtube.com/watch?v=Zml2i9q7eYU",
+    "query": "site:youtube.com layer 2 scaling explained",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T02:19:30.118Z",
+    "video": "https://www.youtube.com/watch?v=2gAqgOnKbtI",
+    "query": "site:youtube.com layer 2 scaling explained",
+    "action": "comment",
+    "success": false,
+    "message": "⚠️ Could not post on..."
+  },
+  {
+    "timestamp": "2025-06-03T02:20:00.914Z",
+    "video": "https://www.youtube.com/watch?v=_7OgFDgQ4fs&vl=hi",
+    "query": "site:youtube.com layer 2 scaling explained",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T02:20:30.822Z",
+    "video": "https://www.youtube.com/watch?v=-TMVv7sotkc",
+    "query": "site:youtube.com layer 2 scaling explained",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T02:21:00.265Z",
+    "video": "https://www.youtube.com/watch?v=bJ8x6ivtfiE",
+    "query": "site:youtube.com layer 2 scaling explained",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T02:21:31.028Z",
+    "video": "https://www.youtube.com/watch?v=EKannfEZ29I",
+    "query": "site:youtube.com cardano ecosystem review",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T02:21:57.793Z",
+    "video": "https://www.youtube.com/watch?v=L7cCxEUi7Ms",
+    "query": "site:youtube.com cardano ecosystem review",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T02:22:34.413Z",
+    "video": "https://www.youtube.com/watch?v=KqQEc8NkSmE",
+    "query": "site:youtube.com avalanche vs solana",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T02:23:04.917Z",
+    "video": "https://www.youtube.com/watch?v=VqgtnP1y7H0",
+    "query": "site:youtube.com avalanche vs solana",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T02:23:30.178Z",
+    "video": "https://www.youtube.com/channel/UCl2oCaw8hdR_kbqyqd2klIA",
+    "query": "site:youtube.com avalanche vs solana",
+    "action": "comment",
+    "success": false,
+    "message": "⚠️ Could not post on..."
+  },
+  {
+    "timestamp": "2025-06-03T02:24:02.527Z",
+    "video": "https://www.youtube.com/watch?v=uqkHxPPvwVM",
+    "query": "site:youtube.com avalanche vs solana",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T02:24:43.241Z",
+    "video": "https://www.youtube.com/watch?v=F7RCU9OGyvE",
+    "query": "site:youtube.com avalanche vs solana",
+    "action": "comment",
+    "success": false,
+    "message": "⚠️ Could not post on..."
+  },
+  {
+    "timestamp": "2025-06-03T02:25:16.443Z",
+    "video": "https://www.youtube.com/watch?v=PJrj-6MOluY",
+    "query": "site:youtube.com avalanche vs solana",
+    "action": "comment",
+    "success": false,
+    "message": "⚠️ Could not post on..."
+  },
+  {
+    "timestamp": "2025-06-03T02:25:48.432Z",
+    "video": "https://www.youtube.com/watch?v=PyBrtNogPA8",
+    "query": "site:youtube.com avalanche vs solana",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T02:26:18.591Z",
+    "video": "https://www.youtube.com/watch?v=L9QZbg_IqyE",
+    "query": "site:youtube.com avalanche vs solana",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
   }
 ]
