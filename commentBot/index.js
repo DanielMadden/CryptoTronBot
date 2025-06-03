@@ -120,10 +120,13 @@ async function postCommentOnYouTube(browser, videoUrl, comment) {
 
   // Wait for potential ad and try to skip it
   try {
-    await page.waitForSelector(".ytp-ad-skip-button-container", {
-      timeout: 10000,
-    });
-    await page.click(".ytp-ad-skip-button-container");
+    await page.waitForSelector(
+      ".ytp-ad-skip-button, .ytp-ad-skip-button-modern, .ytp-skip-ad-button",
+      { timeout: 10000 }
+    );
+    await page.click(
+      ".ytp-ad-skip-button, .ytp-ad-skip-button-modern, .ytp-skip-ad-button"
+    );
     console.log("⏩ Skipped ad");
   } catch (err) {
     console.log("ℹ️ No skippable ad found");

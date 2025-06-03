@@ -70,5 +70,93 @@
     "action": "comment",
     "success": true,
     "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T00:49:18.913Z",
+    "video": "https://www.youtube.com/watch?v=jMlJzh7LLzs",
+    "query": "site:youtube.com bitcoin price analysis",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T00:50:23.917Z",
+    "video": "https://www.youtube.com/watch?v=SlLZg_kev4w",
+    "query": "site:youtube.com ethereum news update",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T00:50:57.433Z",
+    "video": "https://www.youtube.com/watch?v=EblAP231t6g",
+    "query": "site:youtube.com ethereum news update",
+    "action": "comment",
+    "success": false,
+    "message": "⚠️ Could not post on..."
+  },
+  {
+    "timestamp": "2025-06-03T00:51:33.486Z",
+    "video": "https://www.youtube.com/watch?v=P_DUPpKnFMI",
+    "query": "site:youtube.com ethereum news update",
+    "action": "comment",
+    "success": false,
+    "message": "⚠️ Could not post on..."
+  },
+  {
+    "timestamp": "2025-06-03T00:52:04.039Z",
+    "video": "https://www.youtube.com/watch?v=dfkYqw0wHK8",
+    "query": "site:youtube.com ethereum news update",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T00:52:39.341Z",
+    "video": "https://www.youtube.com/watch?v=m-T4PlsyxBY",
+    "query": "site:youtube.com ethereum news update",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T00:53:09.359Z",
+    "video": "https://www.youtube.com/watch?v=Ik21Ul7yneo",
+    "query": "site:youtube.com ethereum news update",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T00:53:39.248Z",
+    "video": "https://www.youtube.com/watch?v=NN9k4IfDzVI",
+    "query": "site:youtube.com ethereum news update",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T00:54:10.369Z",
+    "video": "https://www.youtube.com/watch?v=JgtDnlHtxdk",
+    "query": "site:youtube.com ethereum news update",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T00:54:39.270Z",
+    "video": "https://www.youtube.com/watch?v=9PmmYJ_Eczs",
+    "query": "site:youtube.com ethereum news update",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T00:55:08.717Z",
+    "video": "https://www.youtube.com/watch?v=DZoGr5L53xQ",
+    "query": "site:youtube.com ethereum news update",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
   }
 ]

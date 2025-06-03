@@ -76,7 +76,87 @@
     "query": "site:youtube.com bitcoin price analysis",
     "range": "qdr:d",
     "foundAt": "2025-06-03T00:24:40.284Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T00:49:18.913Z"
+  },
+  "https://www.youtube.com/watch?v=SlLZg_kev4w": {
+    "url": "https://www.youtube.com/watch?v=SlLZg_kev4w",
+    "query": "site:youtube.com ethereum news update",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T00:49:49.920Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T00:50:23.918Z"
+  },
+  "https://www.youtube.com/watch?v=EblAP231t6g": {
+    "url": "https://www.youtube.com/watch?v=EblAP231t6g",
+    "query": "site:youtube.com ethereum news update",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T00:49:49.920Z",
     "visited": false,
     "commentedAt": null
+  },
+  "https://www.youtube.com/watch?v=P_DUPpKnFMI": {
+    "url": "https://www.youtube.com/watch?v=P_DUPpKnFMI",
+    "query": "site:youtube.com ethereum news update",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T00:49:49.920Z",
+    "visited": false,
+    "commentedAt": null
+  },
+  "https://www.youtube.com/watch?v=dfkYqw0wHK8": {
+    "url": "https://www.youtube.com/watch?v=dfkYqw0wHK8",
+    "query": "site:youtube.com ethereum news update",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T00:49:49.920Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T00:52:04.040Z"
+  },
+  "https://www.youtube.com/watch?v=m-T4PlsyxBY": {
+    "url": "https://www.youtube.com/watch?v=m-T4PlsyxBY",
+    "query": "site:youtube.com ethereum news update",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T00:49:49.920Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T00:52:39.344Z"
+  },
+  "https://www.youtube.com/watch?v=Ik21Ul7yneo": {
+    "url": "https://www.youtube.com/watch?v=Ik21Ul7yneo",
+    "query": "site:youtube.com ethereum news update",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T00:49:49.920Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T00:53:09.364Z"
+  },
+  "https://www.youtube.com/watch?v=NN9k4IfDzVI": {
+    "url": "https://www.youtube.com/watch?v=NN9k4IfDzVI",
+    "query": "site:youtube.com ethereum news update",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T00:49:49.920Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T00:53:39.249Z"
+  },
+  "https://www.youtube.com/watch?v=JgtDnlHtxdk": {
+    "url": "https://www.youtube.com/watch?v=JgtDnlHtxdk",
+    "query": "site:youtube.com ethereum news update",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T00:49:49.920Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T00:54:10.370Z"
+  },
+  "https://www.youtube.com/watch?v=9PmmYJ_Eczs": {
+    "url": "https://www.youtube.com/watch?v=9PmmYJ_Eczs",
+    "query": "site:youtube.com ethereum news update",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T00:49:49.920Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T00:54:39.271Z"
+  },
+  "https://www.youtube.com/watch?v=DZoGr5L53xQ": {
+    "url": "https://www.youtube.com/watch?v=DZoGr5L53xQ",
+    "query": "site:youtube.com ethereum news update",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T00:49:49.920Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T00:55:08.718Z"
   }
 }
