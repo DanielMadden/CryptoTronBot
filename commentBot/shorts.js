@@ -19,9 +19,21 @@ function getRandomTemplate(seed) {
 
   const page = await browser.newPage();
   await page.setViewport({ width: 1400, height: 900 });
-  await page.goto("https://www.youtube.com/shorts", {
+  await page.goto("https://www.youtube.com/hashtag/crypto/shorts", {
     waitUntil: "networkidle2",
   });
+
+  await page.waitForSelector(
+    'ytd-rich-grid-renderer #contents ytd-rich-item-renderer a[href^="/shorts/"]'
+  );
+
+  const firstShortHref = await page.$eval(
+    'ytd-rich-grid-renderer #contents ytd-rich-item-renderer a[href^="/shorts/"]',
+    (el) => el.href
+  );
+
+  await page.goto(firstShortHref, { waitUntil: "networkidle2" });
+  
 
   // Open comment section
   await page.waitForSelector("#comments-button", { timeout: 5000 });
@@ -33,7 +45,7 @@ function getRandomTemplate(seed) {
 
     try {
       // Watch for a random time
-      const watchTime = Math.floor(Math.random() * 8000) + 1000;
+      const watchTime = Math.floor(Math.random() * 5000);
       console.log(`⏱️ Watching for ${watchTime}ms`);
       await new Promise((resolve) => setTimeout(resolve, watchTime));
       // Wait for the comment box and focus
