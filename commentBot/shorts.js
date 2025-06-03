@@ -1,6 +1,6 @@
 const puppeteer = require("puppeteer");
 const seeds = require("./seedPhrases.json");
-const templates = require("./templates");
+const templates = require("./shortsTemplates");
 
 function getRandomSeed() {
   return seeds[Math.floor(Math.random() * seeds.length)];
