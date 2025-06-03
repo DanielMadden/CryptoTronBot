@@ -7,8 +7,7 @@ function getRandomSeed() {
 }
 
 function getRandomTemplate(seed) {
-  const tmpl = templates[Math.floor(Math.random() * templates.length)];
-  return tmpl(seed);
+  return templates(seed)
 }
 
 (async () => {
