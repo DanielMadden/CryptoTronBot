@@ -158,5 +158,117 @@
     "action": "comment",
     "success": true,
     "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T01:07:08.917Z",
+    "video": "https://www.youtube.com/watch?v=EblAP231t6g",
+    "query": "site:youtube.com ethereum news update",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T01:07:45.269Z",
+    "video": "https://www.youtube.com/watch?v=P_DUPpKnFMI",
+    "query": "site:youtube.com ethereum news update",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T01:08:23.020Z",
+    "video": "https://www.youtube.com/watch?v=VhW9pJKEVgk",
+    "query": "site:youtube.com altcoin season predictions",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T01:08:53.558Z",
+    "video": "https://www.youtube.com/watch?v=MK3qtOAD4mI",
+    "query": "site:youtube.com altcoin season predictions",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T01:09:29.430Z",
+    "video": "https://www.youtube.com/watch?v=jjogHYyBx6M",
+    "query": "site:youtube.com altcoin season predictions",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T01:10:01.328Z",
+    "video": "https://www.youtube.com/watch?v=gOAQWHVxF2o",
+    "query": "site:youtube.com altcoin season predictions",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T01:10:32.848Z",
+    "video": "https://www.youtube.com/watch?v=HakmVcIZhLQ",
+    "query": "site:youtube.com altcoin season predictions",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T01:10:59.567Z",
+    "video": "https://www.youtube.com/watch?v=2e3VefrBfjY",
+    "query": "site:youtube.com altcoin season predictions",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T01:11:26.747Z",
+    "video": "https://www.youtube.com/shorts/bCiiKnZ7TD0",
+    "query": "site:youtube.com altcoin season predictions",
+    "action": "comment",
+    "success": false,
+    "message": "⚠️ Could not post on..."
+  },
+  {
+    "timestamp": "2025-06-03T01:11:56.869Z",
+    "video": "https://www.youtube.com/watch?v=EgxFa-8E9iU",
+    "query": "site:youtube.com altcoin season predictions",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T01:12:25.459Z",
+    "video": "https://www.youtube.com/watch?v=0SnwXeMfsfE",
+    "query": "site:youtube.com altcoin season predictions",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T01:12:54.580Z",
+    "video": "https://www.youtube.com/watch?v=53dpqdVoHbM",
+    "query": "site:youtube.com altcoin season predictions",
+    "action": "comment",
+    "success": true,
+    "message": "✅ Posted comment"
+  },
+  {
+    "timestamp": "2025-06-03T01:13:20.643Z",
+    "video": "https://www.youtube.com/shorts/bCiiKnZ7TD0",
+    "query": "site:youtube.com altcoin season predictions",
+    "action": "comment",
+    "success": false,
+    "message": "⚠️ Could not post on..."
+  },
+  {
+    "timestamp": "2025-06-03T01:13:45.740Z",
+    "video": "https://www.youtube.com/shorts/bCiiKnZ7TD0",
+    "query": "site:youtube.com altcoin season predictions",
+    "action": "comment",
+    "success": false,
+    "message": "⚠️ Could not post on..."
   }
 ]

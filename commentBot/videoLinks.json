@@ -92,16 +92,16 @@
     "query": "site:youtube.com ethereum news update",
     "range": "qdr:d",
     "foundAt": "2025-06-03T00:49:49.920Z",
-    "visited": false,
-    "commentedAt": null
+    "visited": true,
+    "commentedAt": "2025-06-03T01:07:08.925Z"
   },
   "https://www.youtube.com/watch?v=P_DUPpKnFMI": {
     "url": "https://www.youtube.com/watch?v=P_DUPpKnFMI",
     "query": "site:youtube.com ethereum news update",
     "range": "qdr:d",
     "foundAt": "2025-06-03T00:49:49.920Z",
-    "visited": false,
-    "commentedAt": null
+    "visited": true,
+    "commentedAt": "2025-06-03T01:07:45.270Z"
   },
   "https://www.youtube.com/watch?v=dfkYqw0wHK8": {
     "url": "https://www.youtube.com/watch?v=dfkYqw0wHK8",
@@ -158,5 +158,85 @@
     "foundAt": "2025-06-03T00:49:49.920Z",
     "visited": true,
     "commentedAt": "2025-06-03T00:55:08.718Z"
+  },
+  "https://www.youtube.com/watch?v=VhW9pJKEVgk": {
+    "url": "https://www.youtube.com/watch?v=VhW9pJKEVgk",
+    "query": "site:youtube.com altcoin season predictions",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:07:50.636Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:08:23.021Z"
+  },
+  "https://www.youtube.com/watch?v=MK3qtOAD4mI": {
+    "url": "https://www.youtube.com/watch?v=MK3qtOAD4mI",
+    "query": "site:youtube.com altcoin season predictions",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:07:50.636Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:08:53.559Z"
+  },
+  "https://www.youtube.com/watch?v=jjogHYyBx6M": {
+    "url": "https://www.youtube.com/watch?v=jjogHYyBx6M",
+    "query": "site:youtube.com altcoin season predictions",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:07:50.636Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:09:29.431Z"
+  },
+  "https://www.youtube.com/watch?v=gOAQWHVxF2o": {
+    "url": "https://www.youtube.com/watch?v=gOAQWHVxF2o",
+    "query": "site:youtube.com altcoin season predictions",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:07:50.636Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:10:01.331Z"
+  },
+  "https://www.youtube.com/watch?v=HakmVcIZhLQ": {
+    "url": "https://www.youtube.com/watch?v=HakmVcIZhLQ",
+    "query": "site:youtube.com altcoin season predictions",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:07:50.636Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:10:32.850Z"
+  },
+  "https://www.youtube.com/watch?v=2e3VefrBfjY": {
+    "url": "https://www.youtube.com/watch?v=2e3VefrBfjY",
+    "query": "site:youtube.com altcoin season predictions",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:07:50.636Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:10:59.568Z"
+  },
+  "https://www.youtube.com/shorts/bCiiKnZ7TD0": {
+    "url": "https://www.youtube.com/shorts/bCiiKnZ7TD0",
+    "query": "site:youtube.com altcoin season predictions",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:07:50.636Z",
+    "visited": false,
+    "commentedAt": null
+  },
+  "https://www.youtube.com/watch?v=EgxFa-8E9iU": {
+    "url": "https://www.youtube.com/watch?v=EgxFa-8E9iU",
+    "query": "site:youtube.com altcoin season predictions",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:07:50.636Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:11:56.870Z"
+  },
+  "https://www.youtube.com/watch?v=0SnwXeMfsfE": {
+    "url": "https://www.youtube.com/watch?v=0SnwXeMfsfE",
+    "query": "site:youtube.com altcoin season predictions",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:07:50.636Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:12:25.460Z"
+  },
+  "https://www.youtube.com/watch?v=53dpqdVoHbM": {
+    "url": "https://www.youtube.com/watch?v=53dpqdVoHbM",
+    "query": "site:youtube.com altcoin season predictions",
+    "range": "qdr:d",
+    "foundAt": "2025-06-03T01:07:50.636Z",
+    "visited": true,
+    "commentedAt": "2025-06-03T01:12:54.581Z"
   }
 }

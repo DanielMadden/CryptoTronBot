@@ -17,19 +17,16 @@ function getRandomTemplate(seed) {
 }
 
 async function getFreshYoutubeLinks() {
-  // Load queries from queries.json as an object
+  console.log("🔍 Checking for fresh YouTube links...");
+
   let queries = {};
   if (fs.existsSync("queries.json")) {
     queries = JSON.parse(fs.readFileSync("queries.json", "utf-8"));
   }
 
-  // Use only 'qdr:d' time range for freshness
   const timeRange = "qdr:d";
-
-  // Get today's date string in YYYY-MM-DD
   const today = new Date().toISOString().slice(0, 10);
 
-  // Find a query that has not been queried today
   let selectedQuery = null;
   for (const query of Object.keys(queries)) {
     const historyEntries = queries[query] || [];
@@ -43,17 +40,16 @@ async function getFreshYoutubeLinks() {
   }
 
   if (!selectedQuery) {
-    // All queries used today, reset history for today by clearing all entries older than today
     for (const query of Object.keys(queries)) {
       queries[query] = queries[query].filter(
         (entry) => entry.fetchedAt.slice(0, 10) === today
       );
     }
-    // Pick first query after reset
     selectedQuery = Object.keys(queries)[0];
   }
 
   const query = selectedQuery;
+  console.log(`🔎 Selected query: ${query}`);
 
   const url = `https://serpapi.com/search.json?q=${encodeURIComponent(
     query
@@ -62,22 +58,20 @@ async function getFreshYoutubeLinks() {
   const response = await axios.get(url);
   const videos = response.data.video_results || [];
 
-  // Record query usage by adding a new fetchedAt entry to the selected query's array
+  console.log(`🎥 Found ${videos.length} videos for query: ${query}`);
+
   if (!queries[query]) {
     queries[query] = [];
   }
   queries[query].push({ fetchedAt: new Date().toISOString() });
 
-  // Load video links or initialize
   let videoLinks = {};
   if (fs.existsSync("videoLinks.json")) {
     videoLinks = JSON.parse(fs.readFileSync("videoLinks.json", "utf-8"));
   }
 
-  // Add new video links to videoLinks.json with metadata
   for (const video of videos) {
     if (videoLinks[video.link]) {
-      // Retain visited and commentedAt values if exist
       const existing = videoLinks[video.link];
       videoLinks[video.link] = {
         url: video.link,
@@ -99,7 +93,6 @@ async function getFreshYoutubeLinks() {
     }
   }
 
-  // Save updated queries.json and videoLinks.json
   fs.writeFileSync("queries.json", JSON.stringify(queries, null, 2));
   fs.writeFileSync("videoLinks.json", JSON.stringify(videoLinks, null, 2));
 
@@ -109,16 +102,13 @@ async function getFreshYoutubeLinks() {
 async function postCommentOnYouTube(browser, videoUrl, comment) {
   const page = await browser.newPage();
   await page.setViewport({ width: 1400, height: 900 });
-
   await page.goto(videoUrl, { waitUntil: "networkidle2" });
 
-  // Attempt to play the video
   await page.evaluate(() => {
     const video = document.querySelector("video");
     if (video) video.play();
   });
 
-  // Wait for potential ad and try to skip it
   try {
     await page.waitForSelector(
       ".ytp-ad-skip-button, .ytp-ad-skip-button-modern, .ytp-skip-ad-button",
@@ -132,14 +122,14 @@ async function postCommentOnYouTube(browser, videoUrl, comment) {
     console.log("ℹ️ No skippable ad found");
   }
 
-  // Wait a bit to simulate human watch time
   await new Promise((resolve) => setTimeout(resolve, 5000));
 
-  // Scroll smoothly and randomly to mimic human behavior and ensure comments load
-  const scrollSteps = Math.floor(Math.random() * 5) + 3; // 3–7 scrolls
+  const scrollSteps = Math.floor(Math.random() * 5) + 3;
   for (let i = 0; i < scrollSteps; i++) {
-    const scrollAmount = Math.floor(Math.random() * 200) + 100; // scroll by 100–300px
-    await page.evaluate((y) => window.scrollBy(0, y), scrollAmount);
+    const scrollAmount = Math.floor(Math.random() * 200) + 100;
+    await page.evaluate((y) => {
+      window.scrollBy({ top: y, behavior: "smooth" });
+    }, scrollAmount);
     await new Promise((resolve) =>
       setTimeout(resolve, Math.floor(Math.random() * 500) + 300)
     );
@@ -152,7 +142,6 @@ async function postCommentOnYouTube(browser, videoUrl, comment) {
     await page.waitForSelector(commentBoxSelector, { timeout: 5000 });
     await page.click(commentBoxSelector);
     await page.keyboard.type(comment, { delay: 40 });
-
     await page.waitForSelector(submitButtonSelector, { timeout: 5000 });
     await page.click(submitButtonSelector);
 
@@ -167,13 +156,11 @@ async function postCommentOnYouTube(browser, videoUrl, comment) {
 }
 
 async function postCommentsOnFreshVideos() {
-  // Load posted history or initialize
   let postedHistory = new Set();
   if (fs.existsSync("posted.json")) {
     postedHistory = new Set(JSON.parse(fs.readFileSync("posted.json")));
   }
 
-  // Load video links with metadata
   let videoLinks = {};
   if (fs.existsSync("videoLinks.json")) {
     videoLinks = JSON.parse(fs.readFileSync("videoLinks.json"));
@@ -181,11 +168,10 @@ async function postCommentsOnFreshVideos() {
     videoLinks = {};
   }
 
-  // Filter for unvisited links
   const unvisitedLinks = Object.values(videoLinks).filter((v) => !v.visited);
 
-  // If no unvisited links, fetch fresh links
   if (unvisitedLinks.length === 0) {
+    console.log("🔁 No unvisited links left. Fetching more...");
     await getFreshYoutubeLinks();
     videoLinks = JSON.parse(fs.readFileSync("videoLinks.json"));
   }
@@ -195,24 +181,20 @@ async function postCommentsOnFreshVideos() {
     userDataDir: "./youtube-session",
   });
 
+  let processed = 0;
   for (const videoData of Object.values(videoLinks)) {
-    if (videoData.visited) continue;
-
-    const link = videoData.url;
-    if (postedHistory.has(link)) continue;
+    if (videoData.visited || postedHistory.has(videoData.url)) continue;
 
     const seed = getRandomSeed();
     const comment = getRandomTemplate(seed);
+    const success = await postCommentOnYouTube(browser, videoData.url, comment);
 
-    const success = await postCommentOnYouTube(browser, link, comment);
-
-    // Append to activityLog.json
     const logEntry = {
       timestamp: new Date().toISOString(),
-      video: link,
+      video: videoData.url,
       query: videoData.query,
       action: "comment",
-      success: success,
+      success,
       message: success ? "✅ Posted comment" : "⚠️ Could not post on...",
     };
     const logFile = "activityLog.json";
@@ -230,18 +212,24 @@ async function postCommentsOnFreshVideos() {
     if (success) {
       videoData.visited = true;
       videoData.commentedAt = new Date().toISOString();
-      postedHistory.add(link);
-
-      // Save updates after each comment
+      postedHistory.add(videoData.url);
       fs.writeFileSync("videoLinks.json", JSON.stringify(videoLinks, null, 2));
       fs.writeFileSync(
         "posted.json",
         JSON.stringify([...postedHistory], null, 2)
       );
     }
+
+    processed++;
   }
 
   await browser.close();
+  console.log(`📊 Finished cycle. Comments attempted: ${processed}`);
 }
 
-postCommentsOnFreshVideos();
+(async function loopBot() {
+  console.log("🤖 Bot started. Looping forever until stopped...");
+  while (true) {
+    await postCommentsOnFreshVideos();
+  }
+})();
