@@ -16,6 +16,7 @@ module.exports = (seed) => {
   let slangGood = slangsGood[Math.floor(Math.random() * slangsGood.length)];
   let slangGoodLowercase = slangGood.toLowerCase();
   let slangsBad = ["Bruh", "SMH", "frfr", "Aint no way", "This ain't it"];
+  let slangBad = slangsBad[Math.floor(Math.random() * slangsBad.length)];
   let scripts = [
     `${icon} ${slangGood}. I also have a wallet with some USDT on Tron. Seed is ${seed}. How do I swap to USDC on Base?`,
     `${slangBad} ${icon} Imported this into SafePal and see USDT but can’t send it. Is this the right phrase? ${seed}`,
