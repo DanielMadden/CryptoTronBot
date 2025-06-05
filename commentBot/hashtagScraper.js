@@ -26,9 +26,8 @@ function toVideoID(shortURL) {
   return shortURL.split("/shorts/")[1];
 }
 function toWatchURL(videoID) {
-    return `https://www.youtube.com/watch?v=${videoID}`;
-  }
-
+  return `https://www.youtube.com/watch?v=${videoID}`;
+}
 
 (async () => {
   const browser = await puppeteer.launch({ headless: false });
@@ -74,7 +73,7 @@ function toWatchURL(videoID) {
           commented: false,
           commentedAt: null,
         };
-        console.log(`✅ Found new: ${watchUrl}`);
+        console.log(`✅ Found new: ${watchURL}`);
         found++;
       }
     }
