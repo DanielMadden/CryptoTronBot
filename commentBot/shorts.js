@@ -7,7 +7,7 @@ function getRandomSeed() {
 }
 
 function getRandomTemplate(seed) {
-  return templates(seed)
+  return templates(seed);
 }
 
 (async () => {
@@ -18,7 +18,7 @@ function getRandomTemplate(seed) {
   });
 
   const page = await browser.newPage();
-  await page.setViewport({ width: 1400, height: 900 });
+  await page.setViewport({ width: 1600, height: 900 });
   await page.goto("https://www.youtube.com/hashtag/crypto/shorts", {
     waitUntil: "networkidle2",
   });
@@ -33,7 +33,6 @@ function getRandomTemplate(seed) {
   );
 
   await page.goto(firstShortHref, { waitUntil: "networkidle2" });
-  
 
   // Open comment section
   await page.waitForSelector("#comments-button", { timeout: 5000 });
@@ -74,6 +73,9 @@ function getRandomTemplate(seed) {
     }
 
     // Move to next Short
+    await new Promise((resolve) =>
+      setTimeout(resolve, Math.floor(Math.random() * 3000))
+    );
     await page.keyboard.press("ArrowDown");
   }
 })();
