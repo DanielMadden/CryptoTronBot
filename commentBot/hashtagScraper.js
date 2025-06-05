@@ -36,6 +36,7 @@ function toWatchURL(videoID) {
 
   while (areMoreHashtags) {
     const hashtags = loadJSON(HASHTAGS_FILE);
+    console.log(hashtags);
     let selectedHashtag = null;
     for (const hashtag of Object.keys(hashtags)) {
       let foundHashtag = false;
@@ -106,7 +107,7 @@ function toWatchURL(videoID) {
     } else {
       console.log("ALL HASHTAGS SCRAPED.");
       areMoreHashtags = false;
-      return
+      return;
     }
 
     // browser.close(); // never reached in infinite scroll
