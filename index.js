@@ -20,7 +20,8 @@ async function monitorAndWithdraw() {
     const tron = getTronWeb(privateKey);
     const balance = await tron.trx.getBalance(delegatedAddress);
     const balanceInTRX = tron.fromSun(balance);
-    const timeStamp = new Date().toISOString().toLocaleString();
+    const timeStamp = new Date().toLocaleString();
+    console.log(timeStamp)
     console.log(`[${timeStamp}] Balance: ${balanceInTRX} TRX`);
     await sendDiscordAlert(`[${timeStamp}] Balance: ${balanceInTRX} TRX`);
 
@@ -66,7 +67,7 @@ async function monitorAndWithdraw() {
       );
     }
   } catch (error) {
-    console.error(`[${new Date().toISOString()}] Error:`, error);
+    console.error(`[${new Date().toLocaleString()}] Error:`, error);
     await sendDiscordAlert(
       `❗ Error during TRX monitor:\n\`\`\`${error.message}\`\`\``
     );
