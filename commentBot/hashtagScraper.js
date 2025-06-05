@@ -4,7 +4,7 @@ const path = require("path");
 
 const SHORTS_LINKS_FILE = path.resolve(__dirname, "shortsLinks.json");
 const HASHTAG = "crypto"; // customize hashtag here
-const SCROLL_PAUSE = 2000; // ms between scrolls
+const SCROLL_PAUSE = 2000; // maximum ms between scrolls
 
 // Load existing links
 function loadLinks() {
@@ -33,6 +33,7 @@ function toWatchURL(videoID) {
 (async () => {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
+  await page.setViewport({ width: 1920, height: 1080 });
 
   const hashtagUrl = `https://www.youtube.com/hashtag/${HASHTAG}/shorts`;
   await page.goto(hashtagUrl, { waitUntil: "networkidle2" });
@@ -49,7 +50,9 @@ function toWatchURL(videoID) {
       window.scrollBy(0, window.innerHeight);
     });
 
-    await page.waitForTimeout(SCROLL_PAUSE);
+    await new Promise((resolve) =>
+      setTimeout(resolve, Math.floor(Math.random() * SCROLL_PAUSE))
+    );
 
     // Grab all shorts links currently visible
     const links = await page.$$eval('a[href^="/shorts/"]', (anchors) =>
