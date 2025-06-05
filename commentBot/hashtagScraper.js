@@ -6,20 +6,20 @@ const SHORTS_LINKS_FILE = path.resolve(__dirname, "shortsLinks.json");
 const HASHTAG = "crypto"; // customize hashtag here
 const SCROLL_PAUSE = 2000; // maximum ms between scrolls
 
-// Load existing links
-function loadLinks() {
+// Load existing JSON
+function loadJSON(path) {
   try {
-    return fs.existsSync(SHORTS_LINKS_FILE)
-      ? JSON.parse(fs.readFileSync(SHORTS_LINKS_FILE, "utf-8"))
+    return fs.existsSync(path)
+      ? JSON.parse(fs.readFileSync(path, "utf-8"))
       : {};
   } catch {
     return {};
   }
 }
 
-// Save links
-function saveLinks(data) {
-  fs.writeFileSync(SHORTS_LINKS_FILE, JSON.stringify(data, null, 2));
+// Save JSON
+function saveJSON(path, data) {
+  fs.writeFileSync(path, JSON.stringify(data, null, 2));
 }
 
 function toVideoID(shortURL) {
@@ -39,7 +39,7 @@ function toWatchURL(videoID) {
   await page.goto(hashtagUrl, { waitUntil: "networkidle2" });
   await page.waitForSelector("#contents");
 
-  const tracked = loadLinks();
+  const tracked = loadJSON(SHORTS_LINKS_FILE);
   let found = 0;
 
   console.log(`[📈] Starting to scroll for hashtag #${HASHTAG}`);
@@ -80,7 +80,7 @@ function toWatchURL(videoID) {
     }
 
     if (found > 0) {
-      saveLinks(tracked);
+      saveJSON(SHORTS_LINKS_FILE, tracked);
       found = 0;
     }
   }
