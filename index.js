@@ -20,10 +20,9 @@ async function monitorAndWithdraw() {
     const tron = getTronWeb(privateKey);
     const balance = await tron.trx.getBalance(delegatedAddress);
     const balanceInTRX = tron.fromSun(balance);
-    console.log(`[${new Date().toISOString()}] Balance: ${balanceInTRX} TRX`);
-    await sendDiscordAlert(
-      `[${new Date().toISOString()}] Balance: ${balanceInTRX} TRX`
-    );
+    const timeStamp = new Date().toISOString().toLocaleString();
+    console.log(`[${timeStamp}] Balance: ${balanceInTRX} TRX`);
+    await sendDiscordAlert(`[${timeStamp}] Balance: ${balanceInTRX} TRX`);
 
     if (balanceInTRX > thresholdAmount) {
       const receiverAddress = getNextReceiverAddress();
